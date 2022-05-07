@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "452750114138",
+    "firebase_url": "https://fir-d846d-default-rtdb.firebaseio.com",
+    "project_id": "fir-d846d",
+    "storage_bucket": "fir-d846d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452750114138:android:291e43cdcc6003c4044763",
+        "android_client_info": {
+          "package_name": "me.kzaman.chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452750114138-00jtvo84tvh9fou9oegfaikusquidrub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyBRj-cn986R1Vt7xDN_HwY3LaBpstZgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452750114138-00jtvo84tvh9fou9oegfaikusquidrub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452750114138:android:9c286b23ca4422d5044763",
+        "android_client_info": {
+          "package_name": "me.kzaman.firebase_practice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452750114138-kcglkjmfrdevi2l2agss25db0d57rjr3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.kzaman.firebase_practice",
+            "certificate_hash": "b79f4a38440d3ae86f25219a333436544e9cba98"
+          }
+        },
+        {
+          "client_id": "452750114138-00jtvo84tvh9fou9oegfaikusquidrub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyBRj-cn986R1Vt7xDN_HwY3LaBpstZgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452750114138-00jtvo84tvh9fou9oegfaikusquidrub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
