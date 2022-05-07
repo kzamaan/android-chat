@@ -1,60 +1,71 @@
 package me.kzaman.chat_app.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
+import me.kzaman.chat_app.ui.activities.DashboardActivity
 import me.kzaman.chat_app.R
+import me.kzaman.chat_app.base.BaseFragment
+import me.kzaman.chat_app.databinding.FragmentLoginBinding
+import me.kzaman.chat_app.utils.LoadingUtils
+import me.kzaman.chat_app.utils.goToNextFragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+    private lateinit var binding: FragmentLoginBinding
+    lateinit var mAuth: FirebaseAuth
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class LoginFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override val layoutId: Int = R.layout.fragment_login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        mContext = requireContext()
+        mActivity = requireActivity()
+        loadingUtils = LoadingUtils(mContext)
+        mAuth = FirebaseAuth.getInstance()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = viewDataBinding
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        binding.createAccount.setOnClickListener {
+            goToNextFragment(R.id.action_loginFragment_to_registerFragment, binding.root, null)
         }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        binding.loginButton.setOnClickListener {
+            if(binding.emailInputField.text.isNullOrEmpty()){
+                binding.emailInputField.error = "Required"
+                return@setOnClickListener
+            }
+            else if(binding.passwordInputField.text.isNullOrEmpty()){
+                binding.passwordInputField.error = "Required"
+                return@setOnClickListener
+            }
+            loadingUtils.isLoading(true)
+            mAuth.signInWithEmailAndPassword(
+                binding.emailInputField.text.toString().trim(),
+                binding.passwordInputField.text.toString().trim()
+            ).addOnCompleteListener(mActivity) {
+                if (it.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Toast.makeText(mContext, "Success", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(mContext, DashboardActivity::class.java)
+                    startActivity(intent)
+                    mActivity.finish()
+                } else {
+                    loadingUtils.isLoading(false)
+                    binding.errorMessage.visibility = View.VISIBLE
+                    binding.errorMessage.text = it.exception?.message
+                    // If sign in fails, display a message to the user.
+                    Log.d("loginError", it.exception?.message.toString())
                 }
             }
+        }
     }
 }
