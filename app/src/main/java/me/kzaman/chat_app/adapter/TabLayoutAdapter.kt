@@ -4,20 +4,16 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import me.kzaman.chat_app.R
 import me.kzaman.chat_app.ui.fragments.ChatsFragment
+import me.kzaman.chat_app.ui.fragments.FriendsFragment
 import me.kzaman.chat_app.ui.fragments.RequestFragment
 
-private val TAB_TITLES = arrayOf(
-    "Requests",
-    "Chats",
-    "Friends"
-)
+private val TAB_TITLES = arrayOf("Requests", "Chats", "Friends")
 
 class TabLayoutAdapter(
     private val context: Context,
-    fm: FragmentManager
-) : FragmentPagerAdapter(fm) {
+    fragmentManager: FragmentManager
+) : FragmentPagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
@@ -28,7 +24,7 @@ class TabLayoutAdapter(
                 ChatsFragment()
             }
             else -> {
-                RequestFragment()
+                FriendsFragment()
             }
         }
     }

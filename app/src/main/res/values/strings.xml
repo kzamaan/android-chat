@@ -16,4 +16,6 @@
     <string name="requests">Requests</string>
     <string name="chats">Chats</string>
     <string name="friends">Friends</string>
+    <string name="logout">Logout</string>
+    <string name="account_settings">Account Settings</string>
 </resources>
