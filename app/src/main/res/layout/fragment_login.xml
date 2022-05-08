@@ -44,7 +44,6 @@
                 android:id="@+id/emailInputField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:autofillHints="Email"
                 android:background="@drawable/bg_input_field"
                 android:drawableStart="@drawable/ic_baseline_email_24"

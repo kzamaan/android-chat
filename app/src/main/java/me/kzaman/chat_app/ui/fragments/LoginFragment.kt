@@ -39,11 +39,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         }
 
         binding.loginButton.setOnClickListener {
-            if(binding.emailInputField.text.isNullOrEmpty()){
+            if (binding.emailInputField.text.isNullOrEmpty()) {
                 binding.emailInputField.error = "Required"
                 return@setOnClickListener
-            }
-            else if(binding.passwordInputField.text.isNullOrEmpty()){
+            } else if (binding.passwordInputField.text.isNullOrEmpty()) {
                 binding.passwordInputField.error = "Required"
                 return@setOnClickListener
             }
