@@ -1,10 +1,13 @@
 package me.kzaman.chat_app.ui.activities
 
 import android.content.Intent
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -31,7 +34,11 @@ class DashboardActivity : BaseActivity() {
         val tabs: TabLayout = binding.tabLayout
         tabs.setupWithViewPager(viewPager)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_root)
+        toolbar.overflowIcon?.colorFilter = PorterDuffColorFilter(
+            ContextCompat.getColor(this, R.color.white),
+            PorterDuff.Mode.SRC_ATOP
+        )
         setSupportActionBar(toolbar)
     }
 
